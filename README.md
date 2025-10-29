@@ -40,7 +40,37 @@ This metric is designed to quickly identify dynamic regions, hinge points, and c
 
 \## Setup \& Usage (Local Machine)
 
+🧩 Required Benchmark Pairs
 
+To fully reproduce the validation tests described in the manuscript and figures, the following protein structure pairs are required.
+Each pair represents a biologically relevant conformational change, used to test the Resetability (R) metric.
+
+Label	PDB IDs	Description	Biological Purpose
+Hemoglobin_T_vs_R	2HBB (T state), 1AJ9 (R state)	Human hemoglobin in tense (T) and relaxed (R) forms	Classic allosteric transition test for ΔR sensitivity
+PD1_Apo_vs_Bound	3RRQ, 3B71 (apo) → 5GGS (bound)	PD-1 receptor, free vs antibody-bound	Measures ligand-induced rigidification
+HLA_A0201_vs_B27	1A1N (HLA-A0201), 1HSA (HLA-B27)	Two HLA alleles	Compares immune allotype structural dynamics
+HLA_A2_TCR_vs_free	1A1N (free), 1AO7 (TCR-bound)	HLA–TCR complex formation	Captures receptor-induced rotation and stability shift
+
+These structures are automatically loaded when the script detects their .cif or .mmCIF files under:
+
+Protein_R/inputs/
+
+
+For best results, include the following files in that folder:
+
+1AJ9.cif
+2HBB.cif
+3RRQ.cif
+3B71.cif
+5GGS.cif
+1A1N.cif
+1HSA.cif
+1AO7.cif
+
+
+All of these can be downloaded directly from the RCSB Protein Data Bank
+ by searching for their PDB IDs.
+The script will automatically parse whichever subset is available and skip missing entries gracefully.
 
 1\.  \*\*Install Dependencies:\*\*
 
