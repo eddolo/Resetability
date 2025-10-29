@@ -113,6 +113,45 @@ q_{reset} =
 
 ---
 
+## 🚀 Telemetry Resetability Analysis (Stand-Alone)
+
+This tool extends the Resetability (R) framework to **real rocket or satellite telemetry**.  
+It evaluates the reversibility of orientation sequences (quaternions) over time windows and identifies "reset opportunities" —  
+moments when a system could recover orientation with minimal control effort using the λ-scaled two-pass replay principle.
+
+### 📂 Input
+A telemetry CSV file with quaternion columns:
+```csv
+timestamp,qw,qx,qy,qz
+0.00,1,0,0,0
+0.10,0.999,0.01,-0.02,0.005
+...
+▶️ Run
+bash
+Copy code
+python demos/analyze_telemetry_resetability.py --input data/telemetry.csv --window 50 --fps 10 --animate
+📊 Output
+Files saved in results/:
+
+telemetry_analysis.csv – rolling R and θ_net across time
+
+telemetry_reset_opportunities.csv – detected low-R, high-rotation windows
+
+telemetry_resetability_plot.png – static visualization
+
+telemetry_resetability_<timestamp>.mp4 – animation of evolving R and θ_net
+
+🔬 Interpretation
+Low R (<0.05) → system state is geometrically "resettable"
+
+θ_net > 1° → meaningful rotational movement
+
+Red markers indicate intervals where a two-pass λ-reset maneuver would return attitude to nominal with minimal torque.
+
+This enables onboard or post-flight analysis of reset potential in telemetry data — useful for spacecraft attitude recovery, booster stabilization, or robotic free-flight control.
+
+---
+
 ## 📚 Citation
 
 **Cappuccini, Paolo & GPT-5.**  
