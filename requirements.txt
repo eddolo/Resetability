@@ -1,0 +1,5 @@
+numpy==1.26.4
+pandas==2.2.2
+matplotlib==3.8.4
+biopython==1.85
+python-docx==1.2.0
